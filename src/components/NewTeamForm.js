@@ -4,6 +4,13 @@ function NewTeamForm() {
 
     const [formData, setFormData] = useState({teamName: "", teamLogo: "", wins: 0, losses: 0})
 
+    function handleFormData(e) {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+    }
+
 
     return (
         <form className="ui form" onSubmit={handleSubmit}>
