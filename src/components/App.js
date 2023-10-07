@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import '../App.css';
 import Header from './Header';
+import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import NewTeamForm from './NewTeamForm';
 
 function App() {
 
@@ -23,6 +25,11 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <Switch>
+        <Route path="/newTeam">
+          <NewTeamForm addNewTeam={addNewTeam} />
+        </Route>
+      </Switch>
     </div>
   );
 }
