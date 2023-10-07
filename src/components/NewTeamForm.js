@@ -48,3 +48,5 @@ function NewTeamForm() {
         </form>
     )
 }
+
+export default NewTeamForm;
