@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function NewTeamForm() {
+function NewTeamForm({ addNewTeam }) {
 
     const [formData, setFormData] = useState({team_name: "", team_logo: "", wins: 0, losses: 0})
 
