@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function NewTeamForm({ addNewTeam }) {
 
+    const history = useHistory()
     const [formData, setFormData] = useState({team_name: "", team_logo: "", wins: 0, losses: 0})
 
     function handleSubmit(e) {
@@ -16,7 +18,10 @@ function NewTeamForm({ addNewTeam }) {
         body: JSON.stringify(formData)
     })
         .then(r => r.json())
-        .then(addNewTeam)
+        .then(data => {
+            addNewTeam(data)
+            history.push("/")
+        })
     }
 
     function handleFormData(e) {
