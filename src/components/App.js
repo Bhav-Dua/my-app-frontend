@@ -3,6 +3,7 @@ import '../App.css';
 import Header from './Header';
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import NewTeamForm from './NewTeamForm';
+import TeamsList from './TeamsList';
 
 function App() {
 
@@ -28,6 +29,9 @@ function App() {
       <Switch>
         <Route path="/newTeam">
           <NewTeamForm addNewTeam={addNewTeam} />
+        </Route>
+        <Route exact path="/">
+          <TeamsList teams={teams} />
         </Route>
       </Switch>
     </div>
