@@ -5,6 +5,7 @@ import Header from './Header';
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import NewTeamForm from './NewTeamForm';
 import TeamsList from './TeamsList';
+import TeamPage from './TeamPage';
 
 function App() {
 
@@ -30,6 +31,9 @@ function App() {
       <Switch>
         <Route path="/newTeam">
           <NewTeamForm addNewTeam={addNewTeam} />
+        </Route>
+        <Route path="/teams/:id">
+          <TeamPage />
         </Route>
         <Route exact path="/">
           <TeamsList teams={teams} />

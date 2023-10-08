@@ -7,14 +7,14 @@ function TeamPage() {
     const { id } = useParams();
 
     useEffect(() => {
-        fetch(`http://localhost:9292/players_by_team/${id}`)
+        fetch(`http://localhost:9292/players/by_team/${id}`)
             .then(r => r.json())
             .then(setPlayers)
     })
 
     const toDisplay = players.map(player => (
         <div className="item">
-            <div className="header">{player.first_name}</div>
+            <div className="header">{player.first_name + " " + player.last_name}</div>
             {player.age}
         </div>
     ))
