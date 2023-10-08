@@ -32,7 +32,7 @@ function NewTeamForm({ addNewTeam }) {
     }
 
     return (
-        <form className="ui form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
             <div className="field">
             <label htmlFor="team_name">Team Name </label>
             <input type="text" id="team_name" name="team_name" value={formData.team_name} onChange={handleFormData} />
