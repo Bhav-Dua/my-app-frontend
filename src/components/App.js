@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
 import '../App.css';
+import 'semantic-ui-css/semantic.min.css';
+import { useEffect, useState } from 'react';
 import Header from './Header';
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import NewTeamForm from './NewTeamForm';
