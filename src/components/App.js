@@ -7,6 +7,7 @@ import NewTeamForm from './NewTeamForm';
 import TeamsList from './TeamsList';
 import TeamPage from './TeamPage';
 import EditPlayerForm from './EditPlayerForm';
+import NewPlayerForm from './NewPlayerform';
 
 function App() {
 
@@ -38,6 +39,9 @@ function App() {
         </Route>
         <Route path="/players/:id">
           <EditPlayerForm />
+        </Route>
+        <Route path="/newPlayer/:id">
+          <NewPlayerForm />
         </Route>
         <Route exact path="/">
           <TeamsList teams={teams} />

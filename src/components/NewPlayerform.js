@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function NewPlayerForm() {
@@ -7,14 +7,16 @@ function NewPlayerForm() {
     const [formData, setFormData] = useState({first_name: "", last_name: "", age: 0, team_id: 0})
     const { id } = useParams();
 
-    function handleSubmit(e) {
-        e.preventDefault()
-        e.target.reset()
-
+    useEffect(() => {
         setFormData({
             ...formData,
             team_id: id
         })
+    }, [])
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        e.target.reset()
 
         fetch(`http://localhost:9292/players`, {
         method: "POST",
