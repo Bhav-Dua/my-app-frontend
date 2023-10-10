@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import PlayerCard from "./PlayerCard";
 
 function TeamPage() {
@@ -31,6 +31,7 @@ function TeamPage() {
     return (
         <div className="ui cards">
             {toDisplay}
+            <Link className="addPlayer" to={`/addPlayer/${id}`}>Add Player</Link>
         </div>
     )
 }
