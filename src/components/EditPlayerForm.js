@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-function NewTeamForm() {
+function EditPlayerForm() {
 
     const history = useHistory()
-    const [formData, setFormData] = useState({first_name: "", last_name: "", age: 0})
+    const [formData, setFormData] = useState({first_name: "", last_name: "", age: 0, team_id: 0})
     const { id } = useParams();
 
     useEffect(() => {
         fetch(`http://localhost:9292/players/${id}`)
             .then(r => r.json())
-            .then(formData)
+            .then(setFormData)
     }, [])
 
     function handleSubmit(e) {
@@ -25,10 +25,7 @@ function NewTeamForm() {
         body: JSON.stringify(formData)
     })
         .then(r => r.json())
-        .then(data => {
-            addNewTeam(data)
-            history.push("/")
-        })
+        .then(player => history.push(`/teams/${player.team_id}`))
     }
 
     function handleFormData(e) {
@@ -57,4 +54,4 @@ function NewTeamForm() {
     )
 }
 
-export default NewTeamForm;
+export default EditPlayerForm;
