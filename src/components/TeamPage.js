@@ -31,7 +31,7 @@ function TeamPage() {
     return (
         <div className="ui cards">
             {toDisplay}
-            <Link className="addPlayer" to={`/addPlayer/${id}`}>Add Player</Link>
+            <Link className="newPlayer" to={`/newPlayer/${id}`}>Add Player</Link>
         </div>
     )
 }
