@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import NewTeamForm from './NewTeamForm';
 import TeamsList from './TeamsList';
 import TeamPage from './TeamPage';
+import EditPlayerForm from './EditPlayerForm';
 
 function App() {
 
@@ -34,6 +35,9 @@ function App() {
         </Route>
         <Route path="/teams/:id">
           <TeamPage />
+        </Route>
+        <Route path="/players/:id">
+          <EditPlayerForm />
         </Route>
         <Route exact path="/">
           <TeamsList teams={teams} />
