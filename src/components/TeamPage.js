@@ -13,15 +13,17 @@ function TeamPage() {
     })
 
     const toDisplay = players.map(player => (
-        <div className="item">
-            <div className="header">{player.first_name + " " + player.last_name}</div>
-            {player.age}
+        <div className="ui card">
+            <div className="content">
+                <h4 className="header">{player.first_name + " " + player.last_name}</h4>
+                <h3 className="age">{player.age}</h3>
+            </div>
         </div>
     ))
 
 
     return (
-        <div className="ui list">
+        <div className="ui cards">
             {toDisplay}
         </div>
     )
