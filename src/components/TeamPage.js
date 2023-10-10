@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import PlayerCard from "./PlayerCard";
 
 function TeamPage() {
 
@@ -12,14 +13,18 @@ function TeamPage() {
             .then(setPlayers)
     }, [])
 
+    function onDelete(deletedPlayer) {
+        setPlayers(players.filter(player => player.id !== deletedPlayer.id))
+    }
+
     const toDisplay = players.map(player => (
-        <div className="ui card">
-            <div className="content">
-                <h4 className="header">{player.first_name + " " + player.last_name}</h4>
-                <h3 className="age">{player.age}</h3>
-                <Link to={`/players/${player.id}`}>Edit Player</Link>
-            </div>
-        </div>
+        <PlayerCard
+        first_name={player.first_name}
+        last_name={player.last_name}
+        age={player.age}
+        id={player.id}
+        onDelete={onDelete}
+        />
     ))
 
 
