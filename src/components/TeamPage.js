@@ -10,7 +10,7 @@ function TeamPage() {
         fetch(`http://localhost:9292/players/by_team/${id}`)
             .then(r => r.json())
             .then(setPlayers)
-    })
+    }, [])
 
     const toDisplay = players.map(player => (
         <div className="ui card">
