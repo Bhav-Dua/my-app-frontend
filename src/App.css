@@ -39,3 +39,14 @@
     transform: rotate(360deg);
   }
 }
+
+.newPlayer {
+  align-items: center;
+  position: fixed;
+  text-align: center;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  font-size: 30px;
+  padding: 10px;
+}
