@@ -39,7 +39,6 @@ function App() {
   }
   
   function onDelete(deletedPlayer) {
-    debugger
     const updatedTeams = teams.map((team) => {
       if (team.id === deletedPlayer.team_id) {
         team.players = team.players.filter((player) => player.id !== deletedPlayer.id)
