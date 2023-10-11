@@ -12,14 +12,12 @@ import NewPlayerForm from './NewPlayerform';
 function App() {
 
   const [teams, setTeams] = useState([])
-  const [allPlayers, setAllPlayers] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:9292/teams")
       .then(r => r.json())
       .then(data => {
         setTeams(data)
-        setAllPlayers(data.map((team) => team.players).flat())
       })
   }, [])
 
@@ -31,24 +29,39 @@ function App() {
   }
 
   function addNewPlayer(newPlayer) {
-    setAllPlayers([
-      ...allPlayers,
-      newPlayer
-    ])
+    const updatedTeams = teams.map((team) => {
+      if (team.id === newPlayer.team_id) {
+        team.players.push(newPlayer)
+      }
+      return team
+    })
+    setTeams(updatedTeams)
   }
   
   function onDelete(deletedPlayer) {
-    setAllPlayers(allPlayers.filter((player) => player.id !== deletedPlayer.id));
+    debugger
+    const updatedTeams = teams.map((team) => {
+      if (team.id === deletedPlayer.team_id) {
+        team.players = team.players.filter((player) => player.id !== deletedPlayer.id)
+      }
+      return team
+    })
+    setTeams(updatedTeams)
   }
 
   function onUpdate(updatedPlayer) {
-    const updatedPlayers = allPlayers.map((player) => {
-        if (player.id === updatedPlayer.id) {
+    const updatedTeams = teams.map((team) => {
+      if (team.id === updatedPlayer.team_id) {
+        team.players = team.players.map((player) => {
+          if (player.id === updatedPlayer.id) {
             return updatedPlayer
-        }
-        else return player
+          }
+          else return player
+        })
+      }
+      return team
     })
-    setAllPlayers(updatedPlayers)
+    setTeams(updatedTeams)
 }
 
   return (
@@ -59,10 +72,10 @@ function App() {
           <NewTeamForm addNewTeam={addNewTeam} />
         </Route>
         <Route path="/teams/:id">
-          <TeamPage allPlayers={allPlayers} onDelete={onDelete} />
+          <TeamPage teams={teams} onDelete={onDelete} />
         </Route>
         <Route path="/players/:id">
-          <EditPlayerForm allPlayers={allPlayers} onUpdate={onUpdate} />
+          <EditPlayerForm teams={teams} onUpdate={onUpdate} />
         </Route>
         <Route path="/newPlayer/:id">
           <NewPlayerForm addNewPlayer={addNewPlayer} />

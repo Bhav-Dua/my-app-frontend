@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-function EditPlayerForm({ allPlayers, onUpdate }) {
+function EditPlayerForm({ teams, onUpdate }) {
 
     const history = useHistory()
     const [formData, setFormData] = useState({first_name: "", last_name: "", age: 0, team_id: 0})
     const { id } = useParams();
 
     useEffect(() => {
-        const player = allPlayers.find((player) => player.id == id)
+        const player = teams
+            .map((team) => team.players)
+            .flat()
+            .find((player) => player.id == id)
         setFormData({
             first_name: player.first_name,
             last_name: player.last_name,
             age: player.age,
             team_id: player.team_id,
         })
-    }, [id, allPlayers])
+    }, [id, teams])
 
     function handleSubmit(e) {
         e.preventDefault()
