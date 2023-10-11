@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-function EditPlayerForm({ teams }) {
+function EditPlayerForm({ allPlayers, onUpdate }) {
 
     const history = useHistory()
     const [formData, setFormData] = useState({first_name: "", last_name: "", age: 0, team_id: 0})
     const { id } = useParams();
 
     useEffect(() => {
-        const player = teams
-            .map((team) => team.players)
-            .flat()
-            .find((player) => player.id == id);
+        const player = allPlayers.find((player) => player.id == id)
         setFormData({
             first_name: player.first_name,
             last_name: player.last_name,
             age: player.age,
             team_id: player.team_id,
         })
-    }, [id, teams])
+    }, [id, allPlayers])
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -32,7 +29,10 @@ function EditPlayerForm({ teams }) {
         body: JSON.stringify(formData)
     })
         .then(r => r.json())
-        .then(player => history.push(`/teams/${player.team_id}`))
+        .then(player => {
+            onUpdate(player)
+            history.push(`/teams/${player.team_id}`)
+        })
     }
 
     function handleFormData(e) {

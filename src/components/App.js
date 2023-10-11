@@ -55,7 +55,7 @@ function App() {
           <TeamPage allPlayers={allPlayers} onDelete={onDelete} />
         </Route>
         <Route path="/players/:id">
-          <EditPlayerForm teams={teams} onUpdate={onUpdate} />
+          <EditPlayerForm allPlayers={allPlayers} onUpdate={onUpdate} />
         </Route>
         <Route path="/newPlayer/:id">
           <NewPlayerForm />
