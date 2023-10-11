@@ -2,20 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import PlayerCard from "./PlayerCard";
 
-function TeamPage({ teams }) {
-    const [players, setPlayers] = useState([]);
+function TeamPage({ allPlayers, onDelete }) {
+    const [players, setPlayers] = useState(allPlayers);
     const { id } = useParams();
 
     useEffect(() => {
-        const filteredTeam = teams.find((team) => team.id == id);
-        if (filteredTeam) {
-            setPlayers(filteredTeam.players);
-        }
-    }, [id, teams]);
-
-    function onDelete(deletedPlayer) {
-        setPlayers(players.filter((player) => player.id !== deletedPlayer.id));
-    }
+        const filteredPlayers = allPlayers.filter((player) => player.team_id == id)
+        setPlayers(filteredPlayers)
+    }, [id, allPlayers]);
 
     if (!players.length) return <div>No players in this team.</div>;
 

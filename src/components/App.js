@@ -12,11 +12,15 @@ import NewPlayerForm from './NewPlayerform';
 function App() {
 
   const [teams, setTeams] = useState([])
+  const [allPlayers, setAllPlayers] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:9292/teams")
       .then(r => r.json())
-      .then(setTeams)
+      .then(data => {
+        setTeams(data)
+        setAllPlayers(data.map((team) => team.players).flat())
+      })
   }, [])
 
   function addNewTeam(newTeam) {
@@ -25,6 +29,19 @@ function App() {
       newTeam
     ])
   }
+  
+  function onDelete(deletedPlayer) {
+    setAllPlayers(allPlayers.filter((player) => player.id !== deletedPlayer.id));
+  }
+
+  function onUpdate(updatedPlayer) {
+    const updatedPlayers = allPlayers.map((player) => {
+        if (player.id === updatedPlayer.id) {
+            return updatedPlayer
+        }
+        else return player
+    })
+}
 
   return (
     <div className="App">
@@ -34,10 +51,10 @@ function App() {
           <NewTeamForm addNewTeam={addNewTeam} />
         </Route>
         <Route path="/teams/:id">
-          <TeamPage teams={teams} />
+          <TeamPage allPlayers={allPlayers} onDelete={onDelete} />
         </Route>
         <Route path="/players/:id">
-          <EditPlayerForm teams={teams} />
+          <EditPlayerForm teams={teams} onUpdate={onUpdate} />
         </Route>
         <Route path="/newPlayer/:id">
           <NewPlayerForm />
