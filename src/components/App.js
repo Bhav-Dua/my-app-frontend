@@ -41,6 +41,7 @@ function App() {
         }
         else return player
     })
+    setAllPlayers(updatedPlayers)
 }
 
   return (
