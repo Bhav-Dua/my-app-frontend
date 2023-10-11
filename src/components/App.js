@@ -34,10 +34,10 @@ function App() {
           <NewTeamForm addNewTeam={addNewTeam} />
         </Route>
         <Route path="/teams/:id">
-          <TeamPage teams={teams}/>
+          <TeamPage teams={teams} />
         </Route>
         <Route path="/players/:id">
-          <EditPlayerForm />
+          <EditPlayerForm teams={teams} />
         </Route>
         <Route path="/newPlayer/:id">
           <NewPlayerForm />

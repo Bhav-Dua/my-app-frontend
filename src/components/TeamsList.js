@@ -5,11 +5,12 @@ function TeamsList({ teams }) {
 
     const toDisplay = teams.map(team => (
         <TeamCard
-        id={team.id}
-        teamName={team.team_name}
-        teamLogo={team.team_logo}
-        wins={team.wins}
-        losses={team.losses}
+            key={team.id}
+            id={team.id}
+            teamName={team.team_name}
+            teamLogo={team.team_logo}
+            wins={team.wins}
+            losses={team.losses}
         />
     ))
     
