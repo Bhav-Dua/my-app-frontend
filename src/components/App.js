@@ -29,6 +29,13 @@ function App() {
       newTeam
     ])
   }
+
+  function addNewPlayer(newPlayer) {
+    setAllPlayers([
+      ...allPlayers,
+      newPlayer
+    ])
+  }
   
   function onDelete(deletedPlayer) {
     setAllPlayers(allPlayers.filter((player) => player.id !== deletedPlayer.id));
@@ -58,7 +65,7 @@ function App() {
           <EditPlayerForm allPlayers={allPlayers} onUpdate={onUpdate} />
         </Route>
         <Route path="/newPlayer/:id">
-          <NewPlayerForm />
+          <NewPlayerForm addNewPlayer={addNewPlayer} />
         </Route>
         <Route exact path="/">
           <TeamsList teams={teams} />

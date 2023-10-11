@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-function NewPlayerForm() {
+function NewPlayerForm({ addNewPlayer }) {
 
     const history = useHistory()
     const [formData, setFormData] = useState({first_name: "", last_name: "", age: 0, team_id: 0})
@@ -26,7 +26,10 @@ function NewPlayerForm() {
         body: JSON.stringify(formData)
     })
         .then(r => r.json())
-        .then(player => history.push(`/teams/${player.team_id}`))
+        .then(player => {
+            addNewPlayer(player)
+            history.push(`/teams/${player.team_id}`)
+        })
     }
 
     function handleFormData(e) {
