@@ -26,7 +26,6 @@ function App() {
     ])
   }
 
-
   return (
     <div className="App">
       <Header />
@@ -35,7 +34,7 @@ function App() {
           <NewTeamForm addNewTeam={addNewTeam} />
         </Route>
         <Route path="/teams/:id">
-          <TeamPage />
+          <TeamPage teams={teams}/>
         </Route>
         <Route path="/players/:id">
           <EditPlayerForm />
